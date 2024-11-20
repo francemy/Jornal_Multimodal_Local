@@ -8,13 +8,13 @@ function createCulturaNews() {
             id: 1,
             title: "Exposição de Arte Contemporânea",
             excerpt: "A galeria local está promovendo uma exposição de arte contemporânea com obras de artistas locais.",
-            image: "/api/placeholder/400/300"
+            image: "public/interior_640-480.jpg"
         },
         {
             id: 2,
             title: "Festival de Cinema no Centro Cultural",
             excerpt: "O Centro Cultural da cidade está promovendo o Festival de Cinema, com filmes de diversos países.",
-            image: "/api/placeholder/400/300"
+            image: "public/Artigo__20220831092055686.jpeg"
         }
     ];
 

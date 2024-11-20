@@ -1,5 +1,6 @@
 // components.js
-import Theme from './themes.js';
+import { selectedTheme } from './styles.js'; // Carregando o tema atual
+import Theme from './themes.js'; // Supondo que o arquivo themes.js esteja correto
 
 export class Component {
     constructor() {
@@ -19,9 +20,11 @@ export class Component {
     }
 }
 
-
-
 export class Card extends Component {
+    imageUrl;
+    title;
+    content;
+
     constructor(imageUrl, title, content) {
         super();
         this.imageUrl = imageUrl;
@@ -33,14 +36,16 @@ export class Card extends Component {
     createCard() {
         this.element = document.createElement('article');
         const cardStyles = `
-            background: ${Theme.colors.bgPrimary};
-            border-radius: ${Theme.borderRadius.md};
-            box-shadow: ${Theme.shadows.sm};
+            background: ${selectedTheme.colors.primary}; /* Usando selectedTheme */
+            border-radius: ${Theme.borderRadius.md}; /* Ajustado para selectedTheme */
+            box-shadow: ${Theme.shadows.sm}; /* Usando selectedTheme */
             transition: transform 0.3s, box-shadow 0.3s;
             overflow: hidden;
+            cursor: pointer;
         `;
         this.setStyle(this.element, cardStyles);
-    
+
+        // Imagem do card
         const image = document.createElement('img');
         this.setStyle(image, {
             width: '100%',
@@ -49,47 +54,99 @@ export class Card extends Component {
         });
         image.src = this.imageUrl;
         image.alt = this.title;
-    
+
+        // Evento de clique na imagem
+        image.addEventListener('click', (e) => {
+            e.stopPropagation(); // Previne o clique do card inteiro
+            this.handleImageClick();
+        });
+
         const content = document.createElement('div');
         this.setStyle(content, {
-            padding: Theme.spacing.md
+            padding: Theme.spacing.md // Usando selectedTheme
         });
-    
+
         const titleEl = document.createElement('h2');
         titleEl.textContent = this.title;
         this.setStyle(titleEl, {
-            fontSize: Theme.typography.sizes.lg,
-            marginBottom: Theme.spacing.sm
+            fontSize: Theme.typography.sizes.lg, // Usando selectedTheme
+            marginBottom: Theme.spacing.sm // Usando selectedTheme
         });
-    
+
         const contentEl = document.createElement('p');
         contentEl.textContent = this.content;
         this.setStyle(contentEl, {
-            color: Theme.colors.textSecondary
+            color: selectedTheme.colors.textSecondary // Usando selectedTheme
         });
-    
+
+        // Botão de ação
+        const actionButton = document.createElement('button');
+        actionButton.textContent = 'Detalhes';
+        this.setStyle(actionButton, {
+            background: selectedTheme.colors.primary, // Usando selectedTheme
+            color: '#fff',
+            padding: `${Theme.spacing.sm} ${Theme.spacing.md}`, // Usando selectedTheme
+            border: 'none',
+            borderRadius: Theme.borderRadius.sm, // Usando selectedTheme
+            cursor: 'pointer',
+            marginTop: Theme.spacing.sm, // Usando selectedTheme
+        });
+
+        actionButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.openDetailsModal();
+        });
+
         content.appendChild(titleEl);
         content.appendChild(contentEl);
+        content.appendChild(actionButton);
         this.element.appendChild(image);
         this.element.appendChild(content);
-    
+
         this.element.addEventListener('mouseover', () => {
             this.setStyle(this.element, {
                 transform: 'translateY(-5px)',
-                boxShadow: Theme.shadows.md
+                boxShadow: Theme.shadows.md // Usando selectedTheme
             });
         });
-    
+
         this.element.addEventListener('mouseout', () => {
             this.setStyle(this.element, {
                 transform: 'translateY(0)',
-                boxShadow: Theme.shadows.sm
+                boxShadow: Theme.shadows.sm // Usando selectedTheme
             });
+        });
+
+        // Clique no card
+        this.element.addEventListener('click', () => {
+            console.log(`Card clicado: ${this.title}`);
+            this.handleCardClick();
+        });
+    }
+
+    handleCardClick() {
+        this.openDetailsModal();
+    }
+
+    handleImageClick() {
+        this.openImagemModal();
+    }
+
+    openDetailsModal() {
+        import('./modalInfo.js').then(({ ModalInfo }) => {
+            const modal = new ModalInfo(this.title, this.content, this.imageUrl);
+            modal.openModal();
+        });
+    }
+
+    openImagemModal() {
+        import('./modalImagem.js').then(({ ModalImagem }) => {
+            const modal = new ModalImagem(this.imageUrl, this.title);
+            modal.openModal();
         });
     }
 }
-    
-    
+
 export class Button extends Component {
     constructor(text, variant = 'primary') {
         super();
@@ -101,21 +158,21 @@ export class Button extends Component {
     createButton() {
         this.element = document.createElement('button');
         this.element.textContent = this.text;
-        
+
         const baseStyles = {
             display: 'inline-block',
-            padding: `${Theme.spacing.sm} ${Theme.spacing.md}`,
-            borderRadius: Theme.borderRadius.sm,
+            padding: `${Theme.spacing.sm} ${Theme.spacing.md}`, // Usando selectedTheme
+            borderRadius: Theme.borderRadius.sm, // Usando selectedTheme
             border: 'none',
-            fontSize: Theme.typography.sizes.md,
+            fontSize: Theme.typography.sizes.md, // Usando selectedTheme
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s'
         };
 
-        const variantStyles = this.variant === 'primary' 
-            ? { backgroundColor: Theme.colors.accent, color: Theme.colors.textLight }
-            : { backgroundColor: Theme.colors.secondary, color: Theme.colors.textLight };
+        const variantStyles = this.variant === 'primary'
+            ? { backgroundColor: selectedTheme.colors.accent, color: selectedTheme.colors.textLight }
+            : { backgroundColor: selectedTheme.colors.secondary, color: selectedTheme.colors.textLight };
 
         this.setStyle(this.element, { ...baseStyles, ...variantStyles });
 
@@ -150,23 +207,23 @@ export class Input extends Component {
 
         this.setStyle(this.element, {
             width: '100%',
-            padding: Theme.spacing.sm,
-            border: `1px solid ${Theme.colors.secondary}`,
-            borderRadius: Theme.borderRadius.sm,
-            fontSize: Theme.typography.sizes.md,
+            padding: selectedTheme.spacing.sm, // Usando selectedTheme
+            border: `1px solid ${selectedTheme.colors.secondary}`, // Usando selectedTheme
+            borderRadius: Theme.borderRadius.sm, // Usando selectedTheme
+            fontSize: Theme.typography.sizes.md, // Usando selectedTheme
             transition: 'border-color 0.3s'
         });
 
         this.element.addEventListener('focus', () => {
             this.setStyle(this.element, {
                 outline: 'none',
-                borderColor: Theme.colors.accent
+                borderColor: selectedTheme.colors.accent // Usando selectedTheme
             });
         });
 
         this.element.addEventListener('blur', () => {
             this.setStyle(this.element, {
-                borderColor: Theme.colors.secondary
+                borderColor: selectedTheme.colors.secondary // Usando selectedTheme
             });
         });
     }
@@ -184,15 +241,15 @@ export class List extends Component {
         this.setStyle(this.element, {
             listStyle: 'none',
             padding: '0',
-            margin: `${Theme.spacing.md} 0`
+            margin: `${Theme.spacing.md} 0` // Usando selectedTheme
         });
 
         this.items.forEach(item => {
             const li = document.createElement('li');
             li.textContent = item;
             this.setStyle(li, {
-                padding: Theme.spacing.sm,
-                borderBottom: `1px solid ${Theme.colors.secondary}`
+                padding: Theme.spacing.sm, // Usando selectedTheme
+                borderBottom: `1px solid ${Theme.colors.secondary}` // Usando selectedTheme
             });
             this.element.appendChild(li);
         });
