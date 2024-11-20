@@ -279,7 +279,6 @@ class StyleSystem {
                 opacity: 0.7;
             }
 
-            
             /* Responsividade */
             @media (max-width: ${this.styles.containers.md}) {
                 .container {
@@ -314,12 +313,12 @@ class StyleSystem {
 }
 
 // Variável global para armazenar o tema atual
-export let currentTheme = localStorage.getItem('theme') || 'light';
+let currentTheme = localStorage.getItem('theme') || 'light';
 let selectedTheme = Theme[currentTheme]; // Seleção do tema atual
-export { selectedTheme };
+export { selectedTheme,currentTheme };
 
 // Função para aplicar o tema
-function applyTheme(theme) {
+export function applyTheme(theme) {
     const root = document.documentElement;
 
     // Aplique as cores do tema selecionado
@@ -335,21 +334,5 @@ function applyTheme(theme) {
     document.body.style.color = selectedTheme.colors.textPrimary;
 }
 
-// Função para alternar entre temas
-function toggleTheme() {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light'; // Alterna o tema
-    localStorage.setItem('theme', currentTheme); // Armazena a escolha no localStorage
-    applyTheme(currentTheme); // Aplica o novo tema
-}
 
-// Verificar e aplicar o tema atual ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    applyTheme(currentTheme); // Aplica o tema armazenado
-});
-
-// Criar um botão para alternar entre os temas (opcional)
-const themeToggleButton = document.createElement('button');
-themeToggleButton.textContent = 'Alterar Tema';
-themeToggleButton.addEventListener('click', toggleTheme);
-
-export { StyleSystem, themeToggleButton };
+export { StyleSystem };

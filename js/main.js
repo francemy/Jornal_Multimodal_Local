@@ -1,13 +1,14 @@
 // app.js
 
 
+import { themeToggleButton } from "./buttontogleTheme.js";
 import { createCulturaNews } from "./cultura.js";
 import { createEsporteNews } from "./Esporte.js";
 import { createFooter } from "./footer.js";
 import { createLocalNews } from "./local.js";
 import { createMenu } from "./Menu.js";
 import { createPoliticaNews } from "./politica.js";
-import {StyleSystem,themeToggleButton} from './styles.js';
+import {StyleSystem} from './styles.js';
 new StyleSystem().injectBaseStyles();
 // Inicializa a estrutura do site
 function initializeApp() {
