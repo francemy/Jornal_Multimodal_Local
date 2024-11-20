@@ -89,15 +89,16 @@ Com as mídias combinadas, você pode:
 │   ├── modalImagem.js
 │   ├── styles.js
 │   ├── themes.js
-│   └── script.js  (caso exista)
+│   └── script.js
 │
 ├── /styles
 │   ├── base.css
 │   ├── layout.css
 │   ├── theme.css
-│   └── media.css  (caso exista)
+│   └── media.css
 │
 └── index.html
+
 
 
 2. Abra o arquivo `index.html` em seu navegador.
