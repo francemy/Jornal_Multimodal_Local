@@ -80,6 +80,25 @@ Com as mídias combinadas, você pode:
    ```bash
    git clone https://github.com/seu-usuario/jornal-multimodal-local.git
    ```
+/Jornal_Multimodal_Local
+│
+├── /js
+│   ├── main.js
+│   ├── components.js
+│   ├── modalInfo.js
+│   ├── modalImagem.js
+│   ├── styles.js
+│   ├── themes.js
+│   └── script.js  (caso exista)
+│
+├── /styles
+│   ├── base.css
+│   ├── layout.css
+│   ├── theme.css
+│   └── media.css  (caso exista)
+│
+└── index.html
+
 
 2. Abra o arquivo `index.html` em seu navegador.
 
