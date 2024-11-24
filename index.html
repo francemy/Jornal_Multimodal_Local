@@ -1,12 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jornal Local Diário</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <script  src="tailwind.config.js"></script> -->
+    <link rel="stylesheet" href="styles/output.css">
+
 </head>
-<body>
-    <script type="module" src="js/main.js"></script>
+
+<body class="font-sans bg-gray-50 text-gray-800">
+
+    <header class=" text-white p-4">
+        <div class="container mx-auto flex justify-between items-center cursor-context-menu">
+            <h1 class="text-2xl font-bold font-title text-textPrimary shadow-md">Jornal Local Diário</h1>
+
+            <nav id="menu" class="text-white menu ">
+                <div class="sm:hidden flex justify-between items-center p-4">
+                    <button id="menu-toggle" class="text-white">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <!-- Menu em telas pequenas (escondido por padrão) -->
+                    <div id="mobile-menu"
+                        class="hidden bg-accent bg-opacity-35 flex-col items-center justify-center absolute w-full z-40 inset-28 text-left">
+                        <a href="#" class="hover:text-gray-100 menu-item">Home</a>
+                        <a href="#" class="hover:text-gray-100 menu-item">Notícias</a>
+                        <a href="#" class="hover:text-gray-100 menu-item">Esportes</a>
+                        <a href="#" class="hover:text-gray-100 menu-item">Cultura</a>
+                        <a href="#" class="hover:text-gray-100 menu-item">Contato</a>
+                    </div>
+                </div>
+
+
+
+                <!-- Menu em telas grandes -->
+                <ul class="hidden sm:flex flex-row ">
+                    <li><a href="#" class="hover:text-gray-300 menu-item">Home</a></li>
+                    <li><a href="#" class="hover:text-gray-300 menu-item">Notícias</a></li>
+                    <li><a href="#" class="hover:text-gray-300 menu-item">Esportes</a></li>
+                    <li><a href="#" class="hover:text-gray-300 menu-item">Cultura</a></li>
+                    <li><a href="#" class="hover:text-gray-300 menu-item">Contato</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Coluna Principal -->
+        <section class="col-span-1 md:col-span-2 card-body">
+            <article class="bg-white shadow-lg rounded-lg p-4 mb-6 card">
+                <h2 class="text-xl font-semibold mb-2 card-heading">Últimas Notícias</h2>
+                <p class="text-gray-600 card-text">Aqui vão as últimas notícias do jornal local. Este é um exemplo de
+                    como o conteúdo pode ser exibido em um layout de mídia combinada.</p>
+            </article>
+
+            <article class="bg-white shadow-lg rounded-lg p-4 mb-6 card">
+                <h2 class="text-xl font-semibold mb-2 card-heading">Notícias Regionais</h2>
+                <p class="text-gray-600 card-text">Em uma cidade como a nossa, as notícias regionais são sempre as mais
+                    relevantes. Fique por dentro do que acontece ao seu redor.</p>
+            </article>
+        </section>
+
+        <!-- Barra Lateral -->
+        <aside class="col-span-1">
+            <div class="bg-white shadow-lg rounded-lg p-4">
+                <h3 class="text-lg font-semibold mb-3">Categorias</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-blue-500 hover:underline">Local</a></li>
+                    <li><a href="#" class="text-blue-500 hover:underline">Esportes</a></li>
+                    <li><a href="#" class="text-blue-500 hover:underline">Cultura</a></li>
+                    <li><a href="#" class="text-blue-500 hover:underline">Política</a></li>
+                    <li><a href="#" class="text-blue-500 hover:underline">Economia</a></li>
+                </ul>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-4 mt-6">
+                <h3 class="text-lg font-semibold mb-3">Últimas Imagens</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="https://via.placeholder.com/100" alt="Imagem 1"
+                        class="w-full h-auto rounded-lg card-image">
+                    <img src="https://via.placeholder.com/100" alt="Imagem 2"
+                        class="w-full h-auto rounded-lg card-image">
+                    <img src="https://via.placeholder.com/100" alt="Imagem 3"
+                        class="w-full h-auto rounded-lg card-image">
+                    <img src="https://via.placeholder.com/100" alt="Imagem 4"
+                        class="w-full h-auto rounded-lg card-image">
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-blue-800 text-white py-4 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Jornal Local Diário. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="./js/menu.js"></script>
+
+
 </body>
+
 </html>
