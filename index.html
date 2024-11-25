@@ -13,11 +13,11 @@
 
 <body class="font-sans bg-gray-50 text-gray-800">
 
-    <header class=" text-white p-4">
-        <div class="container mx-auto flex justify-between items-center cursor-context-menu">
+    <header class=" text-white p-4 menu">
+        <div class="container w-full mx-auto flex justify-between items-center cursor-context-menu">
             <h1 class="text-2xl font-bold font-title text-textPrimary shadow-md">Jornal Local Diário</h1>
 
-            <nav id="menu" class="text-white menu ">
+            <nav id="menu" class="text-white ">
                 <div class="sm:hidden flex justify-between items-center p-4">
                     <button id="menu-toggle" class="text-white">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
@@ -52,7 +52,8 @@
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <main class="w-full mx-auto flex flex-col gap-4">
+        <div class="mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Coluna Principal -->
         <section class="col-span-1 md:col-span-2 card-body">
             <article class="bg-white shadow-lg rounded-lg p-4 mb-6 card">
@@ -95,6 +96,7 @@
                 </div>
             </div>
         </aside>
+    </div>
     </main>
 
     <!-- Rodapé -->

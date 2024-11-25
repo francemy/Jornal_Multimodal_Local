@@ -12,6 +12,10 @@ app.use(express.static(publicDir));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+// Middleware para lidar com 404 - Página não encontrada
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '404.html')); // Página de erro 404
+});
 
 // Subir o servidor
 app.listen(PORT, () => {

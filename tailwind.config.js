@@ -68,6 +68,10 @@ module.exports = {
         md: "768px",
         lg: "1024px",
         xl: "1280px",
+        dispPequeno: { min: '320px', max: '639px' },  // Intervalo para telas pequenas (320px até 639px)
+        dispMedio: { min: '640px', max: '1023px' },  // Intervalo para telas médias (640px até 1023px)
+        dispGrande: { min: '1024px', max: '1535px' }, // Intervalo para telas grandes (1024px até 1535px)
+        xl: '1536px', // Tamanho para telas extra grandes (acima de 1535px)
       },
      
       
